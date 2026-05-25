@@ -1,0 +1,12 @@
+#version 450
+layout(set=0, binding=0) uniform sampler2D srcYCbCr;
+layout(set=0, binding=1, rgba8) uniform writeonly image2D dstRGBA;
+layout(push_constant) uniform PC { ivec2 size; };
+layout(local_size_x=16, local_size_y=16) in;
+void main() {
+    ivec2 pos = ivec2(gl_GlobalInvocationID.xy);
+    if (pos.x >= size.x || pos.y >= size.y) return;
+    vec2 uv = (vec2(pos) + 0.5) / vec2(size);
+    uv.y = 1.0 - uv.y;
+    imageStore(dstRGBA, pos, texture(srcYCbCr, uv));
+}

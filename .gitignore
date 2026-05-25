@@ -1,0 +1,24 @@
+# Build outputs
+libs/
+obj/
+build/
+gst-android-build/
+!UnityAssets/QuestGStreamer/Plugins/Android/libs/
+!UnityAssets/QuestGStreamer/Plugins/Android/libs/arm64-v8a/
+!UnityAssets/QuestGStreamer/Plugins/Android/libs/arm64-v8a/*.so
+
+# GStreamer prebuilt libs (too large for git)
+gstreamer_build/libs/
+gstreamer_build/obj/
+jni/gst-android-build/
+jni/libs/
+jni/obj/
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.claude/
+*.iml
+*.xcodeproj/
