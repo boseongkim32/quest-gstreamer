@@ -57,6 +57,18 @@ The sender should already be producing the RTP/UDP stream before the Unity scene
 activates the plugin. If no UDP packets arrive for 1.5 seconds, the native
 stream transitions to `Stalled`; call `RestartStream()` after the sender is back.
 
+## Example Sender Script
+
+```bash
+gst-launch-1.0 videotestsrc pattern=ball is-live=true \
+  ! video/x-raw,width=3840,height=2160,framerate=60/1,format=I420 \
+  ! vtenc_h264 bitrate=50000 realtime=true allow-frame-reordering=false \
+  ! video/x-h264,profile=high \
+  ! h264parse config-interval=-1 \
+  ! rtph264pay pt=96 \
+  ! udpsink host=<ip_address> port=5000
+```
+
 ## Default Decoder Settings
 
 The C# component defaults to:
