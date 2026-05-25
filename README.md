@@ -69,6 +69,17 @@ gst-launch-1.0 videotestsrc pattern=ball is-live=true \
   ! udpsink host=<ip_address> port=5000
 ```
 
+## Build Process 
+
+```bash
+# If adding new plugins to Android.mk
+ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=jni/Android.mk
+
+# If rebuilding the native plugin
+ndk-build APP_BUILD_SCRIPT=jni/Executable.mk NDK_APPLICATION_MK=jni/Application.mk
+
+# Then copy the .so files into your Unity's Assets/Plugins/Android/libs/arm64-v8a/
+```
 ## Default Decoder Settings
 
 The C# component defaults to:
